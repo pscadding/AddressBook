@@ -1,0 +1,7 @@
+<div *ngIf="addressItem" class="addressItem container">
+    <div class="mainLine">
+        <h3>{{addressItem.firstName}} {{addressItem.lastName}}</h3>
+        <button (click)="onRemoveAddress(addressItem)">X</button>
+    </div>
+    <p *ngIf="addressItem.phoneNumber">Phone Number: {{addressItem.phoneNumber}}</p>
+</div>

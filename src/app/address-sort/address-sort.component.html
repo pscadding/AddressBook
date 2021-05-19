@@ -1,0 +1,7 @@
+<div>
+    <button mat-button [matMenuTriggerFor]="menu">Sort by</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="onSortFirstName()">First Name alphabetically</button>
+        <button mat-menu-item (click)="onSortLastName()">Last Name alphabetically</button>
+    </mat-menu>
+</div>

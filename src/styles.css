@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+h1, h2, h3, p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Used to display a grey rounded rectangle around components*/
+.container {
+    display: flex;
+    flex-direction:column;
+    background-color: #d6d6d6;
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 0.5em;
+    color: #616161;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}

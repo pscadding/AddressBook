@@ -1,0 +1,9 @@
+.addressItem .mainLine {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addressItem h3, p {
+    margin: 0.2em 0.5em 0.2em 0em;
+    padding: 0em;
+}
