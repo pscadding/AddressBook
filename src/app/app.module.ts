@@ -22,6 +22,8 @@ import { AddressSortComponent } from './address-sort/address-sort.component';
     AddressListItemComponent,
     AddressSortComponent,
   ],
+  // TODO: Some of the following import perhaps should be with their
+  //   components rather than globally here.
   imports: [
     BrowserModule,
     AppRoutingModule,
