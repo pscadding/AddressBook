@@ -1,0 +1,15 @@
+<div>
+    <button (click)="onShowAddForm()">+</button>
+    <div *ngIf="showForm" class="create-form container">
+        <h3>First Name</h3>
+        <input id="firstName" [(ngModel)]="addressToCreate.firstName" placeholder="First name">
+        <h3>Last Name</h3>
+        <input id="lastName" [(ngModel)]="addressToCreate.lastName" placeholder="Last name">
+        <h3>Phone Number</h3>
+        <input id="phoneNumber" [(ngModel)]="addressToCreate.phoneNumber" placeholder="Phone number">
+        <div class="confirm-buttons">
+            <button (click)="onCancel()">Cancel</button>
+            <button (click)="onCreateAddress()">Create</button>
+        </div>
+    </div>
+</div>

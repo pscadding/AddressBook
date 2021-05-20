@@ -1,0 +1,6 @@
+<div class="address-list">
+  <ul>
+    <app-address-list-item *ngFor="let address of addressService.getAddresses()" [addressItem]="address">
+    </app-address-list-item>
+  </ul>
+</div>
