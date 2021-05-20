@@ -14,11 +14,11 @@ describe('AddressService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('Add a single address', () => {
-    service.getAddresses().subscribe()
-    // add an address with the minimum required fields.
-    service.addAddress({firstName: "a", lastName: "b"})
+  // it('Add a single address', () => {
+  //   service.getAddresses().subscribe()
+  //   // add an address with the minimum required fields.
+  //   service.addAddress({firstName: "a", lastName: "b"})
 
-    expect(compiled.querySelector('.content span').textContent).toContain('AddressBook app is running!');
-  });
+  //   expect(compiled.querySelector('.content span').textContent).toContain('AddressBook app is running!');
+  // });
 });

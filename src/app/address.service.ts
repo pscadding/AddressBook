@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { AddressItem, PlaceholderAddressItem } from './address-item';
 import { MOCKADDRESSES } from './mock-addresses';
 
+import { IpcRenderer } from 'electron';
+
 // Store all the addresses by id for quicker look up and manipulation
 interface AddressStore {
    [ids: number]: AddressItem
@@ -21,9 +23,21 @@ export class AddressService {
   private addresses: AddressStore = {};
   public searchString: string = "";
   public sortChoice: SortOption = SortOption.firstNameAlpha;
+  private _ipc: IpcRenderer | undefined;
 
   constructor() { 
-    this.fetchAddresses().subscribe(addresses => this.addresses = addresses )
+    this.fetchAddresses().subscribe( addresses => this.addresses = addresses )
+
+    // Get the ipc connection to allow sending information through to electron.
+    if (window.require) {
+      try {
+        this._ipc = window.require('electron').ipcRenderer;
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn('Electron\'s IPC was not loaded');
+    }
   }
 
   /**
@@ -107,5 +121,12 @@ export class AddressService {
     const ids = Object.keys(this.addresses).map(Number);
     // provide 0 as well incase we don't have any ids currently.
     return Math.max(...ids, 0) + 1
+  }
+
+  exportAddresses() {
+    // TODO: Check that the data can be serialized and provide a method of chosing an output path.
+    if (this._ipc) {
+      this._ipc.send('exportAddresses', this.addresses);
+    }
   }
 }
