@@ -35,6 +35,8 @@ It contains the ability to add and remove address entries, search by first name 
 
 There is an export button that currently takes all addresses, and dumps them as a JSON file in the `/output` folder. There is no way currently to set the location or import, I decided to focus on just understanding how to interface with Electron from within an Angular service. Also, no feedback is given in the UI to the user.
 
+I unfortunately ran out of time to add tests, I did spend some time reading up about them, but needed a bit more time to implement them.
+
 It doesn't currently handle large data sets unfortunately, I think I should use `cdk-virtual-scroll-viewport` but I didn't have time to set that up properly. Ideally, it would only pull and render items that would display within a reasonably sized frame.
 
 There is a number of other areas that I would ideally improve or look into more. I've also left TODO's throughout the code.
