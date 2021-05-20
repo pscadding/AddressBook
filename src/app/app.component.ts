@@ -9,7 +9,7 @@ import { AddressService } from './address.service';
 export class AppComponent {
   title = 'AddressBook';
 
-  constructor(private addressService: AddressService) { }
+  constructor(private addressService: AddressService) {}
 
   // TODO: this should probably not be handled in this component
   exportAddresses() {

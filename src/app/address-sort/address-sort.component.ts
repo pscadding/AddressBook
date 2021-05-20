@@ -7,8 +7,7 @@ import { AddressService, SortOption } from '../address.service';
   styleUrls: ['./address-sort.component.css']
 })
 export class AddressSortComponent {
-
-  constructor(private addessService: AddressService) { }
+  constructor(private addessService: AddressService) {}
 
   onSortFirstName() {
     this.addessService.sortChoice = SortOption.firstNameAlpha;

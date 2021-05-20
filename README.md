@@ -43,5 +43,7 @@ There is a number of other areas that I would ideally improve or look into more.
 - Although I am using a Material component for the menu for sorting, I didn't have time to learn more about setting up and working correctly with Material components.
 - The file structure could get messy if I was to expand beyond this simple setup. Ideally, I would move the services into a subfolder and in general, give more thought to the structure of the files. For now, I have left it mostly as it is generated.
 - I would have liked to have spent longer looking at asynchronous loading of data into the components. As it stands I'm fetching the initial  data from a mock data file with a subscribe, but some of the other operations should probably become asynchronous, especially things like exporting the data.
-
+- Required modules are all being imported at the top level in `app.module.ts` but perhaps should be broken down into the components where they are used. I would have like to have read up more on good practices here.
+- The code should have better commenting than it currently is.
+- I quickly threw in prettier linting, but It could have done with some refining.
 

@@ -7,26 +7,27 @@ import { IpcRenderer } from 'electron';
 
 // Store all the addresses by id for quicker look up and manipulation
 interface AddressStore {
-   [ids: number]: AddressItem
+  [ids: number]: AddressItem;
 }
 
 export enum SortOption {
   firstNameAlpha,
-  lastNameAlpha,
+  lastNameAlpha
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressService {
-
   private addresses: AddressStore = {};
-  public searchString: string = "";
+  public searchString: string = '';
   public sortChoice: SortOption = SortOption.firstNameAlpha;
   private _ipc: IpcRenderer | undefined;
 
-  constructor() { 
-    this.fetchAddresses().subscribe( addresses => this.addresses = addresses )
+  constructor() {
+    this.fetchAddresses().subscribe(
+      (addresses) => (this.addresses = addresses)
+    );
 
     // Get the ipc connection to allow sending information through to electron.
     if (window.require) {
@@ -36,7 +37,7 @@ export class AddressService {
         throw e;
       }
     } else {
-      console.warn('Electron\'s IPC was not loaded');
+      console.warn("Electron's IPC was not loaded");
     }
   }
 
@@ -49,35 +50,35 @@ export class AddressService {
    */
   private filterAddresses(addressesToFilter: AddressItem[]): AddressItem[] {
     // Perform a case insensitive match against the start of a string.
-    const re = new RegExp(`^${this.searchString}`,"gmi");
-    const filtered = addressesToFilter.filter(address => {
+    const re = new RegExp(`^${this.searchString}`, 'gmi');
+    const filtered = addressesToFilter.filter((address) => {
       if (address.firstName.match(re)) return true;
       if (address.lastName.match(re)) return true;
       return false;
-    })
+    });
     return filtered;
   }
 
   private sortAddresses(addressesToSort: AddressItem[]): AddressItem[] {
-    const AddressSort = (a:AddressItem, b:AddressItem): number => {
-
+    const AddressSort = (a: AddressItem, b: AddressItem): number => {
       // TODO: This would need to be more complex, but for now everything is alphabetical
       //   and there are only two options for sorting by first name and last name.
-      const paramName = (this.sortChoice == SortOption.firstNameAlpha) ? "firstName" : "lastName"
+      const paramName =
+        this.sortChoice == SortOption.firstNameAlpha ? 'firstName' : 'lastName';
       // Sort Alphabetically and case insensitively.
-      const aParam = a[paramName].toLowerCase()
-      const bParam = b[paramName].toLowerCase()
-      if ( aParam < bParam ) return -1;
-      if ( aParam > bParam ) return 1;
-      return 0
-    }
-    return addressesToSort.sort(AddressSort)
+      const aParam = a[paramName].toLowerCase();
+      const bParam = b[paramName].toLowerCase();
+      if (aParam < bParam) return -1;
+      if (aParam > bParam) return 1;
+      return 0;
+    };
+    return addressesToSort.sort(AddressSort);
   }
 
-  getAddresses() : AddressItem[] {
-    const adrs = Object.values(this.addresses)
-    const filteredAdrs = this.filterAddresses(adrs)
-    return this.sortAddresses(filteredAdrs)
+  getAddresses(): AddressItem[] {
+    const adrs = Object.values(this.addresses);
+    const filteredAdrs = this.filterAddresses(adrs);
+    return this.sortAddresses(filteredAdrs);
   }
 
   /**
@@ -98,21 +99,21 @@ export class AddressService {
    * @returns boolean stating whether the address was added or not.
    */
   addAddress(address: PlaceholderAddressItem) {
-    const id: number = this.generateID()
+    const id: number = this.generateID();
     // TODO: Would want some validation here.
     // TODO: Should really be storing this in the backend
     const newAddress = {
       ...address,
       id: id
-    }
+    };
     this.addresses[id] = newAddress;
-    // TODO: At the moment it can't fail to add an address but 
+    // TODO: At the moment it can't fail to add an address but
     //  maybe we should return an error instead once it can.
     return true;
   }
 
   removeAddress(address: AddressItem) {
-    delete this.addresses[address.id]
+    delete this.addresses[address.id];
   }
 
   private generateID(): number {
@@ -120,7 +121,7 @@ export class AddressService {
     // I wouldn't expect it to work like this.
     const ids = Object.keys(this.addresses).map(Number);
     // provide 0 as well incase we don't have any ids currently.
-    return Math.max(...ids, 0) + 1
+    return Math.max(...ids, 0) + 1;
   }
 
   exportAddresses() {

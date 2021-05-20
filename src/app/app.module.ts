@@ -20,7 +20,7 @@ import { AddressSortComponent } from './address-sort/address-sort.component';
     AddressListComponent,
     AddressCreateComponent,
     AddressListItemComponent,
-    AddressSortComponent,
+    AddressSortComponent
   ],
   // TODO: Some of the following import perhaps should be with their
   //   components rather than globally here.
@@ -35,4 +35,4 @@ import { AddressSortComponent } from './address-sort/address-sort.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressItem } from '../address-item';
-import { AddressService,  } from '../address.service';
+import { AddressService } from '../address.service';
 
 @Component({
   selector: 'app-address-list',
@@ -8,11 +8,7 @@ import { AddressService,  } from '../address.service';
   styleUrls: ['./address-list.component.css']
 })
 export class AddressListComponent implements OnInit {
+  constructor(public addressService: AddressService) {}
 
-  constructor(public addressService: AddressService) { }
-
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 }

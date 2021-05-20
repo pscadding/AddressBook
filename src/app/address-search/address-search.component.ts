@@ -7,10 +7,7 @@ import { AddressService } from '../address.service';
   styleUrls: ['./address-search.component.css']
 })
 export class AddressSearchComponent implements OnInit {
+  constructor(public addressService: AddressService) {}
 
-  constructor(public addressService: AddressService) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

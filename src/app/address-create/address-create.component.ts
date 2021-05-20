@@ -8,32 +8,30 @@ import { AddressService } from '../address.service';
   styleUrls: ['./address-create.component.css']
 })
 export class AddressCreateComponent implements OnInit {
-
   showForm = false;
   addressToCreate: PlaceholderAddressItem = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: ""
-  }
+    firstName: '',
+    lastName: '',
+    phoneNumber: ''
+  };
 
-  constructor(private addressService: AddressService) { }
+  constructor(private addressService: AddressService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   private finishForm() {
     this.addressToCreate = {
-      firstName: "",
-      lastName: "",
-      phoneNumber: ""
-    }
+      firstName: '',
+      lastName: '',
+      phoneNumber: ''
+    };
     this.onShowAddForm();
   }
 
   onShowAddForm() {
     this.showForm = !this.showForm;
   }
-  
+
   onCancel() {
     this.finishForm();
   }
@@ -42,5 +40,4 @@ export class AddressCreateComponent implements OnInit {
     this.addressService.addAddress(this.addressToCreate);
     this.onCancel();
   }
-
 }
